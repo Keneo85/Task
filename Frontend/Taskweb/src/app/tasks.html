@@ -1,0 +1,52 @@
+<div class="header">
+  <h2>Mis tareas</h2>
+  <button class="secondary" (click)="auth.logout()">Salir</button>
+</div>
+
+<form class="card" [formGroup]="form" (ngSubmit)="save()">
+  <label>
+    Título
+    <input formControlName="title" />
+  </label>
+  @if (form.controls.title.touched && form.controls.title.invalid) {
+    <small>Entre 3 y 100 caracteres</small>
+  }
+
+  <label>
+    Descripción
+    <input formControlName="description" />
+  </label>
+
+  <label>
+    Categoría
+    <select formControlName="categoryId">
+      <option value="">-- Selecciona --</option>
+      @for (c of categories(); track c.id) {
+        <option [value]="c.id">{{ c.name }}</option>
+      }
+    </select>
+  </label>
+  @if (form.controls.categoryId.touched && form.controls.categoryId.invalid) {
+    <small>Elige una categoría</small>
+  }
+
+  <label class="check"><input type="checkbox" formControlName="isCompleted" /> Completada</label>
+
+  <button type="submit">{{ editId() ? 'Guardar cambios' : 'Crear tarea' }}</button>
+  <p class="error">{{ error() }}</p>
+</form>
+
+<input class="search" [formControl]="search" placeholder="Buscar..." />
+
+@for (t of tasks(); track t.id) {
+  <div class="card task">
+    <div class="info">
+      <b [class.done]="t.isCompleted">{{ t.title }}</b>
+      <span>{{ categoryNames().get(t.categoryId) }} · {{ t.description }}</span>
+    </div>
+    <button class="secondary" (click)="edit(t)">Editar</button>
+    <button class="danger" (click)="remove(t)">Eliminar</button>
+  </div>
+} @empty {
+  <p class="empty">No hay tareas</p>
+}

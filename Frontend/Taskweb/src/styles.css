@@ -1,0 +1,136 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f2f4f8;
+  margin: 0;
+  padding: 30px 16px;
+}
+
+app-root {
+  display: block;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 14px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.login {
+  max-width: 360px;
+  margin: 60px auto;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-weight: bold;
+  font-size: 14px;
+  margin-top: 6px;
+}
+
+input,
+select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+input.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched {
+  border-color: #d64545;
+}
+
+button {
+  padding: 10px 14px;
+  border: none;
+  border-radius: 6px;
+  background: #3b5bdb;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+button.secondary {
+  background: #e9ecf3;
+  color: #333;
+}
+
+button.danger {
+  background: #fdecec;
+  color: #d64545;
+}
+
+button.link {
+  background: none;
+  color: #3b5bdb;
+  margin-top: 10px;
+}
+
+small,
+.error {
+  color: #d64545;
+  font-size: 13px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.check {
+  flex-direction: row;
+  align-items: center;
+  font-weight: normal;
+}
+
+.search {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 14px;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.task .info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.task .info span {
+  color: #777;
+  font-size: 13px;
+}
+
+.done {
+  text-decoration: line-through;
+  color: #999;
+}
+
+.empty {
+  text-align: center;
+  color: #777;
+}
