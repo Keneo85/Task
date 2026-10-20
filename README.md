@@ -13,46 +13,53 @@ Cada usuario se registra, inicia sesión y maneja solo sus tareas (crear, listar
 
 ## Estructura
 
-```
 Backend/TaskManager
-  TaskManager.Domain          entidades (User, TaskItem, Category, RefreshToken)
-  TaskManager.Application
-  TaskManager.Infrastructure  AppDbContext, configuraciones y migraciones
-  TaskManager.Api             controllers, Program.cs, docker-compose.yml
+TaskManager.Domain entidades (User, TaskItem, Category, RefreshToken)
+TaskManager.Application
+TaskManager.Infrastructure AppDbContext, configuraciones y migraciones
+TaskManager.Api controllers, Program.cs, docker-compose.yml
 
 Frontend/Taskweb
-  src/app
-    auth.ts           servicio de auth, interceptor y guard
-    task.service.ts   llamadas a la API
-    login.ts          login / registro
-    tasks.ts/.html    CRUD de tareas
-    app.routes.ts     rutas
-```
+src/app
+auth.ts servicio de auth, interceptor y guard
+task.service.ts llamadas a la API
+login.ts login / registro
+tasks.ts/.html CRUD de tareas
+app.routes.ts rutas
+
+
 
 ## Cómo levantarlo
 
 **1. Base de datos**
 
-```
+```bash
 cd Backend/TaskManager/TaskManager.Api
 docker compose up -d
 ```
 
-**2. API**
+**2. Migraciones**
+
+Instalar dotnet-ef (solo la primera vez):
+```bash
+dotnet tool install --global dotnet-ef
+```
+
+Aplicar migraciones:
+```bash
+cd Backend/TaskManager/TaskManager.Infrastructure
+dotnet ef database update --startup-project ..\TaskManager.Api\TaskManager.Api.csproj
+```
+
+**3. API**
 
 Revisar la cadena de conexión y `Jwt:Key` en `appsettings.json` (la clave debe tener mínimo 32 caracteres).
 
-Aplicar migraciones desde la Package Manager Console (proyecto por defecto: `TaskManager.Infrastructure`):
+Ejecutar con F5 en Visual Studio. Swagger: https://localhost:7201/swagger
 
-```
-Update-Database
-```
+**4. Frontend**
 
-Ejecutar con F5. Swagger: https://localhost:7201/swagger
-
-**3. Frontend**
-
-```
+```bash
 cd Frontend/Taskweb
 npm install
 ng serve
